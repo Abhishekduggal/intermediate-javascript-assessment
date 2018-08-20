@@ -114,12 +114,15 @@ mustang.drive();
 
 // CODE HERE...
 String.prototype.grammarPolice = function(str) {
-  var splitStr = str.toLowerCase().split(" ");
-  for (var i = 0; i < this.splitStr.length; i++) {
-    split[i] =
-      splitStr[i].charAt(0).toUpperCase() + this.splitStr[i].substring(1);
-  }
-  return splitStr.join(" ");
+  return this.toLowerCase().replace(/\b\w/g, function(z) {
+    return z.toUpperCase();
+  });
+  // var splitStr = str.toLowerCase().split(" ");
+  // for (var i = 0; i < this.splitStr.length; i++) {
+  //   split[i] =
+  //     splitStr[i].charAt(0).toUpperCase() + this.splitStr[i].substring(1);
+  // }
+  // return splitStr.join(" ");
 };
 // *************
 // * PROBLEM 4 *

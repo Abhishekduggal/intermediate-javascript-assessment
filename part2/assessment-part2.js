@@ -144,14 +144,16 @@ function accountingOffice(assets) {
 // CODE HERE...
 
 function forgetter(name) {
-  return function rememberall(item) {
-    var arr = [];
-    arr.push(item);
-    return {
-      name: name,
-      remember: arr
+  var arr = [];
+  {
+    return function rememberall(item) {
+      arr.push(item);
+      return {
+        name: name,
+        remember: arr
+      };
     };
-  };
+  }
 }
 
 // *************
@@ -181,21 +183,53 @@ function forgetter(name) {
 // CODE HERE...
 
 function frodo(startingHungerValue, startingDangerValue) {
-  let hung = startingHungerValue;
-  let dang = startingDangerValue;
-
   return {
     dinnerOverFire: function() {
-      if ((hung || dang) > 0 && (hung || dang <= 100)) {
-        hung -= 25;
-        dang += 40;
-      }
+      return {
+        hunger: (startingHungerValue =
+          startingHungerValue <= 25 ? 0 : startingHungerValue - 25),
+        danger: (startingDangerValue =
+          startingDangerValue >= 60 ? 100 : startingDangerValue + 40)
+      };
     },
     hidingInBush: function() {
-      if ((hung || dang) > 0 && (hung || dang <= 100)) {
-        hung += 35;
-        dang -= 20;
-      }
+      return {
+        hunger: (startingHungerValue =
+          startingHungerValue >= 65 ? 100 : startingHungerValue + 35),
+        danger: (startingDangerValue =
+          startingDangerValue <= 20 ? 0 : startingDangerValue - 20)
+      };
+      // return { hunger: startingHungerValue, danger: startingDangerValue };
     }
   };
 }
+// function frodo(startingHungerValue, startingDangerValue) {
+//   let hung = startingHungerValue;
+//   let dang = startingDangerValue;
+
+//   return {
+//     dinnerOverFire: function() {
+//       hung -= 25;
+//       dang += 40;
+//       if ((hung || dang) < 0) {
+//         hung = 0;
+//         dang = 0;
+//       } else if ((hung || dang) >= 100) {
+//       }
+//       return {
+//         hunger: hung,
+//         danger: dang
+//       };
+//     },
+//     hidingInBush: function() {
+//       if ((hung || dang) > 0 && (hung || dang <= 100)) {
+//         hung += 35;
+//         dang -= 20;
+//       }
+//       return {
+//         hunger: hung,
+//         danger: dang
+//       };
+//     }
+//   };
+// }
